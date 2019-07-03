@@ -1,7 +1,8 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let styleLoader = {
-    loader: 'style-laoder',
+    loader: 'style-loader',
     options:{
         sourceMap:true
     }
@@ -10,18 +11,12 @@ let styleLoader = {
 let cssLoader = {
     loader: 'css-loader',
     options:{
-        sourceMap:true
+        sourceMap:true,
     }
 };
 
 let postcssLoader = {
     loader: 'postcss-loader',
-    options:{
-        sourceMap: true,
-        config: {
-            path: path.resolve(__dirname, './postcss.config.js')
-        }
-    }
 };
 
 let scssLoader = {
@@ -42,7 +37,7 @@ exports.css = () => {
     return{
         test: /\.css$/,
         exclude: /\.m\.css$/,
-        use:[styleLoader,cssLoader,postcssLoader]
+        use:[MiniCssExtractPlugin.loader,cssLoader,postcssLoader]
     }
 }
 // scss 
@@ -50,7 +45,7 @@ exports.scss = () => {
     return{
         test: /\.scss$/,
         exclude:/node_modeles/,
-        use:[styleLoader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
+        use:[MiniCssExtractPlugin.loader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
     }
 }
 

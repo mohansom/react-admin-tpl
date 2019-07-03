@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const prodWebpackConfig = merge(baseWebpackConfig,{
     mode: 'production',
@@ -46,6 +47,11 @@ const prodWebpackConfig = merge(baseWebpackConfig,{
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[id].[contenthash:8].css'
         }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: true,
+            analyzerMode: 'static',
+            reportFilename: 'analyzer.html'
+        })
     ],
     optimization:{
         minimizer:[
