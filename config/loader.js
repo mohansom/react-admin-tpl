@@ -49,6 +49,7 @@ exports.css = () => {
 exports.scss = () => {
     return{
         test: /\.scss$/,
+        exclude:/node_modeles/,
         use:[styleLoader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
     }
 }
@@ -56,14 +57,9 @@ exports.scss = () => {
 // babel
 exports.babel = () => {
     return{
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use:{
-            loader: 'babel-loader',
-            options: {
-                babelrc: true
-            }
-        }
+        test: /\.(jsx|js)$/,
+        include: path.resolve(__dirname,'../src'),
+        loader: 'babel-loader',
     }
 }
 
