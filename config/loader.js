@@ -1,22 +1,27 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+ 
+let dev = process.env.NODE_ENV === 'development'
 
 let styleLoader = {
     loader: 'style-loader',
     options:{
-        sourceMap:true
+        sourceMap:dev
     }
 };
 
 let cssLoader = {
     loader: 'css-loader',
     options:{
-        sourceMap:true,
+        sourceMap:dev,
     }
 };
 
 let postcssLoader = {
     loader: 'postcss-loader',
+    options:{
+        sourceMap:dev,
+    }
 };
 
 let scssLoader = {
@@ -37,7 +42,7 @@ exports.css = () => {
     return{
         test: /\.css$/,
         exclude: /\.m\.css$/,
-        use:[MiniCssExtractPlugin.loader,cssLoader,postcssLoader]
+        use:[dev?styleLoader:MiniCssExtractPlugin.loader,cssLoader,postcssLoader]
     }
 }
 // scss 
@@ -45,7 +50,7 @@ exports.scss = () => {
     return{
         test: /\.scss$/,
         exclude:/node_modeles/,
-        use:[MiniCssExtractPlugin.loader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
+        use:[dev?styleLoader:MiniCssExtractPlugin.loader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
     }
 }
 

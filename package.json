@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config config/webpack.dev.config.js",
-    "build": "webpack --config config/webpack.prod.config.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.config.js"
   },
   "author": "liujianfeng",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "cache-loader": "^4.0.1",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",

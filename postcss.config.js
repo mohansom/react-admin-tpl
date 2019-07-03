@@ -5,7 +5,7 @@ module.exports = {
         require('postcss-import')({
             path: path.resolve(__dirname,'../node_modules')
         }),
-        require('postcss-url'),
-        require('autoprefixer')
+        require('postcss-url')(),
+        require('autoprefixer')()
     ]
 }
