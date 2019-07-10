@@ -1,7 +1,6 @@
 import React,{ Component } from 'react';
 import { BrowserRouter,Switch,Route } from 'react-router-dom';
-import { routes } from './renderRoutes'
-
+import { routes } from './renderRoutes';
 export default class extends Component{
     render(){
         return(

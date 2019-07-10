@@ -2,15 +2,11 @@ import asyncComponent from '../utils/asyncComponent';
 
 export const routes = [
     {
-        path: '/dashboard',
+        path: '/admin/dashboard',
         component: asyncComponent(() => import("../pages/dashboard/dashboard"))
     },
     {
-        path: '/login',
-        component: asyncComponent(() => import("../pages/login/login"))
-    },
-    {
-        path: '/education',
+        path: '/admin/education',
         component: asyncComponent(() => import("../pages/education/index")),
     },
 ]
