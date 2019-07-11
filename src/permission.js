@@ -7,7 +7,7 @@ import { getToken } from './utils/auth';
 const Login = asyncComponent(() => import('./pages/login'));
 const NotFound = asyncComponent(() => import('./pages/NotFound'));
 
-export default () => {
+export default () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" render={() => <Redirect to="/admin/dashboard" push/>}/>
@@ -17,5 +17,5 @@ export default () => {
             <Route render={() => getToken() ? <NotFound /> : <Redirect to="/login" replace />} />
         </Switch>
     </BrowserRouter>
-}
+)
 
