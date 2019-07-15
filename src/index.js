@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Permission from './permission';
 import {Provider} from 'react-redux';
+
+import Permission from './permission';
 import Store from './store/index';
+import 'antd/dist/antd.css';
 import './style/index.scss';
 
 ReactDOM.render(

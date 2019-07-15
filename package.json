@@ -11,6 +11,7 @@
   "author": "liujianfeng",
   "license": "ISC",
   "dependencies": {
+    "antd": "^3.20.3",
     "axios": "^0.19.0",
     "http-server": "^0.11.1",
     "qs": "^6.7.0",
