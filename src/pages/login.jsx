@@ -1,40 +1,54 @@
 import React from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
+import { withRouter } from 'react-router-dom';
+
 import { userLogin } from '../api/user';
 import { setToken } from '../utils/auth'
 
-export default class extends React.Component{
-    handleSubmit(){
-        userLogin({
-            username:"testuser",
-            password:123456,
-        })
-        .then(res => {
-            alert("傻B")
-        })
-        .catch(err => {
-            alert(err)
-        })
+class Login extends React.Component{
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+          if (!err) {
+            userLogin({
+                username:values.username,
+                password: values.password
+            }).then(res => {
+                setToken('Bearer' + ' ' + res.data.access_token,res.data.exp);
+                message.success('登录成功');
+                this.props.history.push("/")
+            })
+          }
+        });
     }
     render(){
+        const { getFieldDecorator } = this.props.form
         return(
             <div>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Form.Item>
-                        <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Username"
-                        />
+                        {getFieldDecorator('username', {
+                            rules: [{ required: true, message: '请输入用户名' }],
+                        })(
+                            <Input
+                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                placeholder="Username"
+                            />
+                        )}
                     </Form.Item>
                     <Form.Item>
-                        <Input
-                            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            type="password"
-                            placeholder="Password"
-                        />
+                        {getFieldDecorator('password', {
+                            rules: [{ required: true, message: '请输入密码' }],
+                        })(
+                            <Input
+                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                type="password"
+                                placeholder="Password"
+                            />
+                        )}
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" onClick={() => this.handleSubmit()}>登录</Button>
+                        <Button type="primary" htmlType="submit">登录</Button>
                     </Form.Item>
                 </Form>
                
@@ -42,3 +56,7 @@ export default class extends React.Component{
         )
     }
 } 
+
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
+
+export default withRouter(WrappedNormalLoginForm);
