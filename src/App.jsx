@@ -14,11 +14,11 @@ export default class extends Component{
             <Layout className="layout-wrap">
                 <Header className="layout-header">
                     <img src={ imgSrc } className="App-logo" alt="logo"/>
-                    {/* <UserMenu /> */}
+                    <UserMenu />
                 </Header>
                 <Layout>
                     <Sider>
-                        {/* <MenuBar /> */}
+                        <MenuBar />
                     </Sider>
                     <Content className="layout-content">
                         <Routes/>

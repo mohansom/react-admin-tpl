@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import { Menu, Dropdown, Icon, Modal, message} from 'antd';
-import { withRouter} from 'react-router-dom';
 const { confirm } = Modal;
 
 import { removeToken } from '../../utils/auth';
 import './index.scss';
 
-class UserMenu extends Component{
-    handleChnagePass(){
+export default class extends Component{
+    ChangePassword(){
         
     }
     handleLogout(){
@@ -29,23 +28,21 @@ class UserMenu extends Component{
     render(){
         const menu = (
             <Menu>
-                <Menu.Item onClick={this.handleChnagePass}>
+                <Menu.Item onClick={() => this.ChangePassword()}>
                     <span>修改密码</span>
                 </Menu.Item>
-                <Menu.Item onClick={this.handleLogout.bind(this)}>
+                <Menu.Item onClick={() => this.handleLogout()}>
                     <span>退出登录</span>
                 </Menu.Item>
             </Menu>
         )
         return(
-            <Dropdown overlay={menu} trigger={['click']} className="f_right">
+            <Dropdown overlay={menu} trigger={['hover']} className="dropdown-wrap">
                 <span className="dropdown-username">
                     fffxue
+                    <Icon type="down"  className="dropdown-name-icon"/>
                 </span>
-                <Icon type="down" className="dropdown-name-icon" />
             </Dropdown>
         )
     }
 }
-
-export default withRouter(UserMenu);
