@@ -1,0 +1,15 @@
+.dropdown-username{
+    color: #ffffff;
+    font-size: 16px;
+    transition: all ease 0.2s;
+    cursor: pointer;
+
+    .dropdown-name-icon{
+        margin-left: 6px;
+    }
+    
+    &:hover{
+        transition: all ease 0.2s;
+        color: #40a9ff;
+    }
+}
