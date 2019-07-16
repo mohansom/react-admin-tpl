@@ -4,7 +4,11 @@ import Routes from './router';
 export default class extends Component{
     render(){
         return(
-            <Routes/>
+            <div>
+                ssss
+                <Routes/>
+            </div>
+            
         )
     }
 }

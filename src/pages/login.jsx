@@ -3,7 +3,8 @@ import { Form, Icon, Input, Button, message } from 'antd';
 import { withRouter } from 'react-router-dom';
 
 import { userLogin } from '../api/user';
-import { setToken } from '../utils/auth'
+import { setToken } from '../utils/auth';
+import '../style/login.scss'
 
 class Login extends React.Component{
     handleSubmit = e => {
@@ -22,10 +23,12 @@ class Login extends React.Component{
         });
     }
     render(){
-        const { getFieldDecorator } = this.props.form
+        const { getFieldDecorator } = this.props.form;
+        const imageSrc = require("../assets/images/logo.png")
         return(
-            <div>
-                <Form onSubmit={this.handleSubmit}>
+            <div className="login-wrap">
+                <Form onSubmit={this.handleSubmit} className="login-form">
+                    <img src={ imageSrc } alt="logo" className="admin-logo" />
                     <Form.Item>
                         {getFieldDecorator('username', {
                             rules: [{ required: true, message: '请输入用户名' }],
@@ -48,7 +51,7 @@ class Login extends React.Component{
                         )}
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">登录</Button>
+                        <Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
                     </Form.Item>
                 </Form>
                
@@ -58,5 +61,4 @@ class Login extends React.Component{
 } 
 
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
-
 export default withRouter(WrappedNormalLoginForm);

@@ -1,0 +1,23 @@
+.login-wrap{
+    width: 100vw;
+    height: 100vh;
+    background: #001529;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login-form{
+        width: 320px;
+    }
+
+    .login-form-button{
+        width: 100%;
+    }
+
+    .admin-logo{
+        width:240px;
+        height: 80px;
+        display: block;
+        margin: 0 auto 40px;
+    }
+}
