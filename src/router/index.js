@@ -4,12 +4,11 @@ import { routes } from './renderRoutes';
 
 export default class extends Component{
     render(){
-        
         return(
             <Switch>
                 {
                     routes.map(obj => {
-                        const singleRoute = r => {
+                        const singleRouter = r => {
                             return(
                                 <Route
                                     key={r.path}
@@ -23,10 +22,10 @@ export default class extends Component{
                         }
                         const inlineRouter = r => (
                             r.map(item => {
-                                return singleRoute(item)
+                                return singleRouter(item)
                             })
                         )
-                        return obj.children ? inlineRouter(obj.children) :  singleRoute(obj)
+                        return obj.children ? inlineRouter(obj.children) :  singleRouter(obj)
                     })
                 }
             </Switch>
