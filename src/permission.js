@@ -12,7 +12,7 @@ export default () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" render={() => <Redirect to="/admin/dashboard" push/>}/>
-            <Route path="/admin" render={() => getToken() ? <App /> : <Redirect to="/login" replace/>} />
+            <Route path="/admin"  render={() => getToken() ? <App /> : <Redirect to="/login" replace/>} />
             <Route path="/login" render={() => getToken() ? <Redirect to="/" replace /> : <Login />} />
             <Route path="/404" render={() => getToken() ? <NotFound /> : <Redirect to="/login" replace />} />
             <Route render={() => getToken() ? <NotFound /> : <Redirect to="/login" replace />} />
