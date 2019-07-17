@@ -4,23 +4,29 @@ import { routes } from './renderRoutes';
 
 export default class extends Component{
     render(){
+        
         return(
             <Switch>
                 {
                     routes.map(obj => {
-                        const route = (r) => {
+                        const singleRoute = r => {
                             return(
                                 <Route
                                     key={r.path}
                                     exact
                                     path={r.path}
                                     render={props => (
-                                        <obj.component {...props}/>
+                                        <r.component {...props}/>
                                     )}
                                 />
                             )
                         }
-                        return route(obj)
+                        const inlineRouter = r => (
+                            r.map(item => {
+                                return singleRoute(item)
+                            })
+                        )
+                        return obj.children ? inlineRouter(obj.children) :  singleRoute(obj)
                     })
                 }
             </Switch>
