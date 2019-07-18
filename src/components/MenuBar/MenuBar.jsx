@@ -25,11 +25,16 @@ const renderSubMenu = routes => (
     </Menu.SubMenu>
 )
 
+@withRouter
 class MenuBar extends Component{
-    // static getDerivedStateFromProps(nextProps,prevState){
-    //     console.log(prevState)
-    //     return null
-    // }
+    static getDerivedStateFromProps (props, state){
+        if(state.selectedKey.split("/").length > 3){
+            return{
+                isHidden:false
+            }
+        }
+        return null;
+    }
     static setMenuOpen = props => {
         const { pathname } = props.location;
         return {
@@ -40,7 +45,7 @@ class MenuBar extends Component{
     state = {
         openKey: '',
         selectedKey: '',
-        firstHide : true, // SubMenu初始状态为闭合
+        isHidden : true, // SubMenu初始状态为闭合
     }
     componentDidMount(){
         const state = MenuBar.setMenuOpen(this.props);
@@ -56,28 +61,26 @@ class MenuBar extends Component{
     openMenu(v){
         this.setState({
             openKey: v[v.length - 1],
-            firstHide: false
+            isHidden: false
         })
     }
     render(){
-        const { selectedKey, openKey, firstHide } = this.state
+        const { selectedKey, openKey, isHidden } = this.state
         return(
-            <div>
-                <Menu
-                    mode="inline"
-                    theme="dark"
-                    onClick={(e) => this.menuClick(e)}
-                    selectedKeys={[selectedKey]}
-                    openKeys={firstHide ? null : [openKey]}
-                    onOpenChange={(v) => this.openMenu(v)}
-                >
-                    { routes.map(element => (
-                        element.children ?  renderSubMenu(element) : renderMenuItem(element)
-                    ))}
-                </Menu>
-            </div>
+            <Menu
+                mode="inline"
+                theme="dark"
+                onClick={(e) => this.menuClick(e)}
+                selectedKeys={[selectedKey]}
+                openKeys={isHidden ? null : [openKey]}
+                onOpenChange={(v) => this.openMenu(v)}
+            >
+                { routes.map(element => (
+                    element.children ?  renderSubMenu(element) : renderMenuItem(element)
+                ))}
+            </Menu>
         )
     }
 }
 
-export default withRouter(MenuBar);
+export default MenuBar;

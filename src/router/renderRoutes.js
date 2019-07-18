@@ -21,5 +21,5 @@ export const routes = [
                 component: asyncComponent(() => import("../pages/education/index")),
             }
         ]
-    },
+    }
 ]
