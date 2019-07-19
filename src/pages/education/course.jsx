@@ -6,15 +6,12 @@ export default class extends React.Component{
         return(
             <div>
                 <Switch>
-                    <Route path={`${this.props.match.path}/:id`}
-                        render={route => {
-                            return(
-                                <div>
-                                    {route.match.params.id}
-                                </div>
-                            )
-                        }}
-                    />
+                    <Route path={`${this.props.match.path}`} render={route => {
+                            return <div>course</div> 
+                    }}/>
+                    <Route path={`${this.props.match.path}/:id`} render={route => {
+                            return <div>{route.match.params.id}</div> 
+                    }}/>
                 </Switch>
             </div>
         )

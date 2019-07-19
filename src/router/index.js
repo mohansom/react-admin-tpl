@@ -7,9 +7,10 @@ export default class extends Component{
         return(
             <Switch>
                 {
-                    routes.map(obj => {
-                        const singleRouter = r => {
-                            return(
+                    Object.keys(routes).map(key => (
+
+                        routes[key].map(obj => {
+                            const singleRouter = r => (
                                 <Route
                                     key={r.path}
                                     exact
@@ -19,14 +20,15 @@ export default class extends Component{
                                     )}
                                 />
                             )
-                        }
-                        const inlineRouter = r => (
-                            r.map(item => {
-                                return singleRouter(item)
-                            })
-                        )
-                        return obj.children ? inlineRouter(obj.children) :  singleRouter(obj)
-                    })
+                            const inlineRouter = r => (
+                                r.map(item => {
+                                    return singleRouter(item)
+                                })
+                            )
+
+                            return obj.children ? inlineRouter(obj.children) : singleRouter(obj)
+                        })
+                    ))
                 }
             </Switch>
         )  

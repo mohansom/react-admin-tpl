@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import { Link,withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
 
-import { routes } from '../../router/renderRoutes';
+import {routes } from '../../router/renderRoutes';
 
 // 一级菜单
-const renderMenuItem = routes => (
+const renderMenuItem = route => (
     <Menu.Item
-        key={routes.path}
+        key={route.path}
     >
-        <Link to={routes.path}>
-            <span>{routes.title}</span>
+        <Link to={route.path}>
+            <span>{route.title}</span>
         </Link>
     </Menu.Item>
 )
     
 // 内嵌菜单
-const renderSubMenu = routes => (
+const renderSubMenu = route => (
     <Menu.SubMenu
-        key={routes.path}
-        title={ <span >{routes.title}</span> }    
+        key={route.path}
+        title={ <span >{route.title}</span> }    
     >
-        {routes.children.map(item => renderMenuItem(item))}
+        {route.children.map(item => renderMenuItem(item))}
     </Menu.SubMenu>
 )
 
@@ -75,7 +75,7 @@ class MenuBar extends Component{
                 openKeys={isHidden ? null : [openKey]}
                 onOpenChange={(v) => this.openMenu(v)}
             >
-                { routes.map(element => (
+                { routes.menu.map(element => (
                     element.children ?  renderSubMenu(element) : renderMenuItem(element)
                 ))}
             </Menu>
