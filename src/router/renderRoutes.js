@@ -1,6 +1,7 @@
 import asyncComponent from '../utils/asyncComponent';
 
 export const routes = {
+    // 菜单
     menu:[
         {
             path: '/admin/dashboard',
@@ -19,6 +20,7 @@ export const routes = {
             ]
         }
     ],
+    // 非菜单
     other:[
 
     ]
