@@ -13,8 +13,8 @@ export const routes = {
             title: '教育平台',
             children:[
                 {
-                    path: '/admin/education/videos',
-                    title: '视频',
+                    path: '/admin/education/course',
+                    title: '课程',
                     component: asyncComponent(() => import("../pages/education/index"))
                 }
             ]
@@ -22,6 +22,9 @@ export const routes = {
     ],
     // 非菜单
     other:[
-
+        {
+            path:"/admin/education/course/:id",
+            component: asyncComponent(() => import("../pages/education/course"))
+        }
     ]
 }
