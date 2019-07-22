@@ -17,7 +17,7 @@ class Home extends React.Component{
         return(
             <div>
                 <div>{this.props.userInfo.name}</div>
-                <button onClick={this.props.addName}>加入冯雪</button>
+                <button onClick={this.props.addName}>加入fx</button>
                 {this.props.children}
             </div>
         )

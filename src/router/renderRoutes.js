@@ -5,17 +5,17 @@ export const routes = {
     menu:[
         {
             path: '/admin/dashboard',
-            title: '首页',
+            title: 'Option 1',
             component: asyncComponent(() => import("../pages/dashboard/index"))
         },
         {
-            path: '/admin/education',
-            title: '教育平台',
+            path: '/admin/menu',
+            title: 'Navigation One',
             children:[
                 {
-                    path: '/admin/education/course',
-                    title: '课程',
-                    component: asyncComponent(() => import("../pages/education/index"))
+                    path: '/admin/menu/option',
+                    title: 'Option 2',
+                    component: asyncComponent(() => import("../pages/menu/index"))
                 }
             ]
         }
@@ -23,8 +23,8 @@ export const routes = {
     // 非菜单
     other:[
         {
-            path:"/admin/education/course/:id",
-            component: asyncComponent(() => import("../pages/education/course"))
+            path:"/admin/menu/option/:id",
+            component: asyncComponent(() => import("../pages/menu/option"))
         }
     ]
 }

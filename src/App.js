@@ -9,7 +9,7 @@ import './style/app.scss';
 
 export default class extends Component{
     render(){
-        const imgSrc = require("./assets/images/logo.png")
+        const imgSrc = require("./assets/images/logo.svg")
         return(
             <Layout className="layout-wrap">
                 <Header className="layout-header">

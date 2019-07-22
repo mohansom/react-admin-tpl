@@ -1,3 +1,10 @@
+/*
+ * @Autor: 刘建峰
+ * @Date: 2019-07-22 14:16:26
+ * @LastEditors: 刘建峰
+ * @LastEditTime: 2019-07-22 14:18:16
+ */
+
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  
