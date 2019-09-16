@@ -1,6 +1,6 @@
 # react-admin-tpl
 
-> react后台界面管理模版
+> react后台管理界面模版
 
 ## Build Setup
 

@@ -23,7 +23,6 @@ export default class extends Component{
                             const inlineRouter = r => (
                                 r.map(item =>  singleRouter(item))
                             )
-
                             return obj.children ? inlineRouter(obj.children) : singleRouter(obj)
                         })
                     ))

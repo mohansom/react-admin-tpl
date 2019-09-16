@@ -5,26 +5,23 @@ export const routes = {
     menu:[
         {
             path: '/admin/dashboard',
-            title: 'Option 1',
+            title: '首页',
             component: asyncComponent(() => import("../pages/dashboard/index"))
         },
         {
-            path: '/admin/menu',
-            title: 'Navigation One',
+            path: '/admin/ui',
+            title: 'UI Components',
             children:[
                 {
-                    path: '/admin/menu/option',
-                    title: 'Option 2',
-                    component: asyncComponent(() => import("../pages/menu/index"))
+                    path: '/admin/ui/button',
+                    title: '按钮',
+                    component: asyncComponent(() => import("../pages/ui/Button"))
                 }
             ]
         }
     ],
     // 非菜单
     other:[
-        {
-            path:"/admin/menu/option/:id",
-            component: asyncComponent(() => import("../pages/menu/option"))
-        }
+        
     ]
 }
