@@ -38,14 +38,22 @@ export default class extends Component{
         )
         return(
             <Header className="head-wrap">
-                <Dropdown overlay={menu} trigger={['hover']} className="dropdown-wrap">
-                    <span className="dropdown-username">
-                        fffxue
-                        <Icon type="down" className="dropdown-name-icon"/>
-                    </span>
-                </Dropdown>
-            </Header>
-            
+                <Icon       
+                    type='menu-unfold'
+                />
+                <div style={{float:'right'}}>
+                    <Icon type="arrows-alt" onClick={this.screenFull} />
+                    <Badge count={25} overflowCount={10} style={{marginLeft: 10}}>
+                            <Icon type="notification" />
+                    </Badge>
+                    <Dropdown overlay={menu} trigger={['hover']} className="dropdown-wrap">
+                        <span className="dropdown-username">
+                            fffxue
+                            <Icon type="down" className="dropdown-name-icon"/>
+                        </span>
+                    </Dropdown>
+                </div>
+            </Header>    
         )
     }
 }

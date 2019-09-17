@@ -1,3 +1,9 @@
+/*
+ * @Author: liujianfeng
+ * @Date: 2019-09-17 19:19:55
+ * @LastEditors: liujianfeng
+ * @LastEditTime: 2019-09-17 22:07:27
+ */
 import React, {Component} from 'react';
 import Routes from './router';
 import { Layout } from 'antd';
@@ -7,6 +13,11 @@ import HeaderCustom from './components/HeaderCustom/HeaderCustom';
 import SiderBarCustom from './components/SiderBarCustom/SiderBarCustom';
 
 export default class extends Component{
+    componentDidMount(){
+        window.onresize = () => {
+            console.log('屏幕变化了');
+        };
+    }
     render(){
         const imgSrc = require("./assets/images/logo.svg")
         return(

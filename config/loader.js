@@ -1,8 +1,8 @@
 /*
  * @Autor: 刘建峰
  * @Date: 2019-07-22 14:16:26
- * @LastEditors: 刘建峰
- * @LastEditTime: 2019-07-22 14:18:16
+ * @LastEditors: liujianfeng
+ * @LastEditTime: 2019-09-17 20:17:22
  */
 
 const path = require('path');
@@ -39,7 +39,7 @@ let scssResourcesLoader = {
     loader: 'sass-resources-loader',
     options: {
         resources: [
-            path.resolve(__dirname, '../src/style/index.scss'),
+            path.resolve(__dirname, '../src/style/variables.scss'),
         ]
     }
 };
