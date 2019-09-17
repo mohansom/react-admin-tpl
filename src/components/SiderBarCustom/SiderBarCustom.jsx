@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link,withRouter } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, Icon} from 'antd';
 
-import {routes } from '../../router/renderRoutes';
+import { routes } from '../../router/renderRoutes';
 
 // 一级菜单
 const renderMenuItem = route => (
@@ -10,6 +10,7 @@ const renderMenuItem = route => (
         key={route.path}
     >
         <Link to={route.path}>
+            {route.icon && <Icon type={route.icon}/>}
             <span>{route.title}</span>
         </Link>
     </Menu.Item>
@@ -19,7 +20,12 @@ const renderMenuItem = route => (
 const renderSubMenu = route => (
     <Menu.SubMenu
         key={route.path}
-        title={ <span >{route.title}</span> }    
+        title={ 
+            <span>
+                {route.icon && <Icon type={route.icon}/>}
+                <span>{route.title}</span>
+            </span> 
+        }    
     >
         {route.children.map(item => renderMenuItem(item))}
     </Menu.SubMenu>

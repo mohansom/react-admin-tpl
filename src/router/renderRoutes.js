@@ -6,16 +6,18 @@ export const routes = {
         {
             path: '/admin/dashboard',
             title: '首页',
+            icon: 'home',
             component: asyncComponent(() => import("../pages/dashboard/index"))
         },
         {
-            path: '/admin/ui',
-            title: 'UI Components',
+            path: '/admin/components',
+            title: '组件',
+            icon: 'appstore',
             children:[
                 {
-                    path: '/admin/ui/button',
-                    title: '按钮',
-                    component: asyncComponent(() => import("../pages/ui/Button"))
+                    path: '/admin/components/icon',
+                    title: '图标',
+                    component: asyncComponent(() => import("../pages/components/icon"))
                 }
             ]
         }

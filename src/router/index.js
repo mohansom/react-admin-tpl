@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { Switch,Route } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 import { routes } from './renderRoutes';
 
 export default class extends Component{
@@ -16,7 +17,9 @@ export default class extends Component{
                                     exact
                                     path={r.path}
                                     render={props => (
-                                        <r.component {...props}/>
+                                        <DocumentTitle title={r.title}>
+                                            <r.component {...props}/>
+                                        </DocumentTitle>
                                     )}
                                 />
                             )

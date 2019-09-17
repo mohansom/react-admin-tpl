@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { Menu, Dropdown, Icon, Modal, message} from 'antd';
+import { Layout, Menu, Dropdown, Icon, Badge, Modal} from 'antd';
 const { confirm } = Modal;
+const { Header } = Layout;
 
-import { removeToken } from '../../utils/auth';
 import './index.scss';
 
 export default class extends Component{
@@ -37,12 +37,15 @@ export default class extends Component{
             </Menu>
         )
         return(
-            <Dropdown overlay={menu} trigger={['hover']} className="dropdown-wrap">
-                <span className="dropdown-username">
-                    fffxue
-                    <Icon type="down"  className="dropdown-name-icon"/>
-                </span>
-            </Dropdown>
+            <Header className="head-wrap">
+                <Dropdown overlay={menu} trigger={['hover']} className="dropdown-wrap">
+                    <span className="dropdown-username">
+                        fffxue
+                        <Icon type="down" className="dropdown-name-icon"/>
+                    </span>
+                </Dropdown>
+            </Header>
+            
         )
     }
 }
