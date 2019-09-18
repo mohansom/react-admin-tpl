@@ -2,7 +2,7 @@
  * @Author: liujianfeng
  * @Date: 2019-09-17 19:19:55
  * @LastEditors: liujianfeng
- * @LastEditTime: 2019-09-17 22:07:27
+ * @LastEditTime: 2019-09-18 19:56:54
  */
 import React, {Component} from 'react';
 import Routes from './router';
@@ -37,10 +37,11 @@ export default class extends Component{
     _getClientWidth = () => {
         let clientWidth = window.innerWidth;
         this.props.userDev(isMobileDev(clientWidth))
+        this.props.userInfo({userName:"Ljf",role:"admin"})
     }
     render(){
-        let { isMobileDev } = this.props.getUserInfo
-        console.log(isMobileDev)
+        let { userInfo,isMobileDev } = this.props.getUserInfo
+        console.log(this.props.getUserInfo)
         return(
             <Layout className="layout-wrap">
                 { !isMobileDev && <SiderBarCustom />}
