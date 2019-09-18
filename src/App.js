@@ -37,15 +37,13 @@ export default class extends Component{
     _getClientWidth = () => {
         let clientWidth = window.innerWidth;
         this.props.userDev(isMobileDev(clientWidth))
-        setTimeout(() => {
-            console.log(this.props.getUserInfo.isMobileDev)
-        },20)
-        
     }
     render(){
+        let { isMobileDev } = this.props.getUserInfo
+        console.log(isMobileDev)
         return(
             <Layout className="layout-wrap">
-                <SiderBarCustom />
+                { !isMobileDev && <SiderBarCustom />}
                 <Layout>
                     <HeaderCustom/>
                     <Content>
