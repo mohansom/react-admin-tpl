@@ -44,9 +44,9 @@ export default class extends Component{
                 <div style={{float:'right'}}>
                     <Icon type="arrows-alt" onClick={this.screenFull} />
                     <Badge count={25} overflowCount={10} style={{marginLeft: 10}}>
-                            <Icon type="notification" />
+                        <Icon type="notification" />
                     </Badge>
-                    <Dropdown overlay={menu} trigger={['hover']} className="dropdown-wrap">
+                    <Dropdown overlay={menu} trigger={['hover']}>
                         <span className="dropdown-username">
                             fffxue
                             <Icon type="down" className="dropdown-name-icon"/>

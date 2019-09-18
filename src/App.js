@@ -6,29 +6,49 @@
  */
 import React, {Component} from 'react';
 import Routes from './router';
+import {connect} from 'react-redux'
 import { Layout } from 'antd';
-const { Sider, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
+import{ userInfo,userDev } from './store/user/action'
+import { isMobileDev } from './utils/utl'
 import HeaderCustom from './components/HeaderCustom/HeaderCustom';
 import SiderBarCustom from './components/SiderBarCustom/SiderBarCustom';
 
+
+const mapStatetoProps = (state) => {
+    return{
+        getUserInfo:state.getUserInfo,
+    }
+}
+const mapDispatchToProps = {userInfo,userDev}
+
+@connect(mapStatetoProps,mapDispatchToProps)
 export default class extends Component{
+    state = {
+        collapsed: false,
+    };
     componentDidMount(){
+        this._getClientWidth();
         window.onresize = () => {
-            console.log('屏幕变化了');
+            this._getClientWidth();
         };
     }
+    _getClientWidth = () => {
+        let clientWidth = window.innerWidth;
+        this.props.userDev(isMobileDev(clientWidth))
+        setTimeout(() => {
+            console.log(this.props.getUserInfo.isMobileDev)
+        },20)
+        
+    }
     render(){
-        const imgSrc = require("./assets/images/logo.svg")
         return(
             <Layout className="layout-wrap">
-                <Sider>
-                    <img src={ imgSrc } className="App-logo" alt="logo"/>
-                    <SiderBarCustom />
-                </Sider>
+                <SiderBarCustom />
                 <Layout>
                     <HeaderCustom/>
-                    <Content className="layout-content">
+                    <Content>
                         <Routes/>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
@@ -37,19 +57,9 @@ export default class extends Component{
                 </Layout>
                 <style>
                     {`
-                        .App-logo{
-                            width:100%;
-                            height: 60px;
-                            padding:10px 0;
-                        }
                         .layout-wrap{
                             width: 100%;
                             height: 100%;
-                            min-width: 1200px;
-                        }
-                        .layout-content{
-                            padding: 15px;
-                            background: #ffffff;
                         }
                     `}
                 </style>

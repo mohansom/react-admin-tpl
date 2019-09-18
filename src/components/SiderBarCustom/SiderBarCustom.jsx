@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link,withRouter } from 'react-router-dom';
-import { Menu, Icon} from 'antd';
+import { Layout, Menu, Icon} from 'antd';
+const { Sider } = Layout;
 
+import './index.scss';
 import { routes } from '../../router/renderRoutes';
 
 // 一级菜单
@@ -32,7 +34,7 @@ const renderSubMenu = route => (
 )
 
 @withRouter
-class MenuBar extends Component{
+class SiderBarCustom extends Component{
     static getDerivedStateFromProps (props, state){
         if(state.selectedKey.split("/").length > 3){
             return{
@@ -54,7 +56,7 @@ class MenuBar extends Component{
         isHidden : true, // SubMenu初始状态为闭合
     }
     componentDidMount(){
-        const state = MenuBar.setMenuOpen(this.props);
+        const state = SiderBarCustom.setMenuOpen(this.props);
         this.setState(state);
     }
     // 点击Item title
@@ -72,21 +74,26 @@ class MenuBar extends Component{
     }
     render(){
         const { selectedKey, openKey, isHidden } = this.state
+        const imgSrc = require("../../assets/images/logo.svg")
         return(
-            <Menu
-                mode="inline"
-                theme="dark"
-                onClick={(e) => this.menuClick(e)}
-                selectedKeys={[selectedKey]}
-                openKeys={isHidden ? null : [openKey]}
-                onOpenChange={(v) => this.openMenu(v)}
-            >
-                { routes.menu.map(element => (
-                    element.children ?  renderSubMenu(element) : renderMenuItem(element)
-                ))}
-            </Menu>
+            <Sider>
+                <img src={ imgSrc } className="App-logo" alt="logo"/>
+                 <Menu
+                    mode="inline"
+                    theme="dark"
+                    onClick={(e) => this.menuClick(e)}
+                    selectedKeys={[selectedKey]}
+                    openKeys={isHidden ? null : [openKey]}
+                    onOpenChange={(v) => this.openMenu(v)}
+                >
+                    { routes.menu.map(element => (
+                        element.children ?  renderSubMenu(element) : renderMenuItem(element)
+                    ))}
+                </Menu>
+            </Sider>
+           
         )
     }
 }
 
-export default MenuBar;
+export default SiderBarCustom;

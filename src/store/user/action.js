@@ -1,13 +1,15 @@
 import * as user from './action-type';
 
-export const addAge = () => {
+export const userInfo = (info) => {
     return{
-        type:user.ADD_Age
+        type:user.USER_INFO,
+        ...info
     }
 }
 
-export const addName = () => {
+export const userDev = (isMobileDev) => {
     return{
-        type:user.ADD_Name
+        type:user.USER_DEV,
+        isMobileDev
     }
 }

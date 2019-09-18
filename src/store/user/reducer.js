@@ -1,17 +1,21 @@
 import * as user from './action-type';
 
-let defaultState = {
-    age:22,
-    name:"ljf"
+const defaultState = {
+    userInfo:{
+        userName:"",
+        role:"",
+        avator:"", 
+    },
+    isMobileDev:false
 }
-export const modifyUserInfo = (state = defaultState,action = {}) => {
+
+
+export const getUserInfo = (state = defaultState,action = {}) => {
     switch(action.type){
-        case user.ADD_Age:
-            state.age += 22;
+        case user.USER_INFO:
             return {...state};
-        case user.ADD_Name:
-            state.name += 'fx';
-            return {...state};
+        case user.USER_DEV:
+            return Object.assign({},state,{isMobileDev:action.isMobileDev})
         default:
             return {...state}
     }
