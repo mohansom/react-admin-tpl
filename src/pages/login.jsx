@@ -24,7 +24,7 @@ class Login extends React.Component{
     }
     render(){
         const { getFieldDecorator } = this.props.form;
-        const imageSrc = require("../assets/images/logo.svg")
+        const imageSrc = require("../assets/svg/logo.svg")
         return(
             <div className="login-wrap">
                 <Form onSubmit={this.handleSubmit} className="login-form">

@@ -1,20 +1,35 @@
-.head-wrap{
-    background:#313653 !important;
-    padding: 0 20px;
+i{
+    cursor:pointer;
+    color:#515151;
+    font-size:20px;
 }
 
-.dropdown-username{
-    color: #ffffff;
-    font-size: 16px;
-    transition: all ease 0.2s;
-    cursor: pointer;
+.head-wrap{
+    display:flex;
+    align-items:center;
+    background:#fff !important;
+    padding: 0 20px !important;
 
-    .dropdown-name-icon{
-        margin-left: 6px;
+}
+
+.header-menu{
+    flex:1;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    cursor:pointer;
+
+    .language{
+        width:20px;
+        height:20px;
+        margin:0 30px; 
     }
     
-    &:hover{
-        transition: all ease 0.2s;
-        color: #40a9ff;
+    .avatar{
+        width:40px;
+        height:40px;
+        border-radius:5px;
     }
 }
+
+

@@ -15,7 +15,6 @@ import { isMobileDev } from './utils/utl'
 import HeaderCustom from './components/HeaderCustom/HeaderCustom';
 import SiderBarCustom from './components/SiderBarCustom/SiderBarCustom';
 
-
 const mapStatetoProps = (state) => {
     return{
         getUserInfo:state.getUserInfo,
@@ -28,6 +27,11 @@ export default class extends Component{
     state = {
         collapsed: false,
     };
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    }
     componentDidMount(){
         this._getClientWidth();
         window.onresize = () => {
@@ -37,16 +41,18 @@ export default class extends Component{
     _getClientWidth = () => {
         let clientWidth = window.innerWidth;
         this.props.userDev(isMobileDev(clientWidth))
-        this.props.userInfo({userName:"Ljf",role:"admin"})
     }
     render(){
-        let { userInfo,isMobileDev } = this.props.getUserInfo
-        console.log(this.props.getUserInfo)
+        let { isMobileDev } = this.props.getUserInfo
         return(
             <Layout className="layout-wrap">
-                { !isMobileDev && <SiderBarCustom />}
+                { !isMobileDev && <SiderBarCustom collapsed={this.state.collapsed} />}
                 <Layout>
-                    <HeaderCustom/>
+                    <HeaderCustom 
+                        mobile={isMobileDev} 
+                        toggle={this.toggle}
+                        collapsed={this.state.collapsed}
+                    />
                     <Content>
                         <Routes/>
                     </Content>
@@ -54,14 +60,11 @@ export default class extends Component{
                         React-Admin-Tpl ©{new Date().getFullYear()} Created by 610578197@qq.com
                     </Footer>
                 </Layout>
-                <style>
-                    {`
-                        .layout-wrap{
-                            width: 100%;
-                            height: 100%;
-                        }
-                    `}
-                </style>
+                <style>{`
+                    .layout-wrap{
+                        height:100%
+                    }
+                `}</style>
             </Layout>
         )
     }

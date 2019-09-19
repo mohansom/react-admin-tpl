@@ -74,11 +74,14 @@ class SiderBarCustom extends Component{
     }
     render(){
         const { selectedKey, openKey, isHidden } = this.state
-        const imgSrc = require("../../assets/images/logo.svg")
+        const imgSrc = require("../../assets/svg/logo.svg")
         return(
-            <Sider>
+            <Sider
+                trigger={null}
+                collapsed={this.props.collapsed}
+            >
                 <img src={ imgSrc } className="App-logo" alt="logo"/>
-                 <Menu
+                <Menu
                     mode="inline"
                     theme="dark"
                     onClick={(e) => this.menuClick(e)}
