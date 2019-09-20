@@ -1,9 +1,6 @@
 import React from 'react';
-import { Form, Icon, Input, Button, message } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { withRouter } from 'react-router-dom';
-
-import { userLogin } from '../api/user';
-import { setToken } from '../utils/auth';
 import '../style/login.scss'
 
 class Login extends React.Component{
@@ -11,16 +8,14 @@ class Login extends React.Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            userLogin({
-                username:values.username,
-                password: values.password
-            }).then(res => {
-                setToken('Bearer' + ' ' + res.data.access_token,res.data.exp);
-                message.success('登录成功');
-                this.props.history.push("/")
+            this.props.userInfo({
+                userName:values.username,
+                password:values.password,
+                auth:values.username
             })
+            this.props.history.push("/")
           }
-        });
+        })
     }
     render(){
         const { getFieldDecorator } = this.props.form;
@@ -54,7 +49,6 @@ class Login extends React.Component{
                         <Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
                     </Form.Item>
                 </Form>
-               
             </div>
         )
     }

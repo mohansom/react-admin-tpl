@@ -1,23 +1,24 @@
 import Cookies from 'js-cookie';
 
-const TOKEN_KEY = "Authorization"
+const LANG_KEY = "Language"
+
 /**
- * 设置cookies
+ * 设置
  */
-export const setToken = (token,expire) => {
-    let expireTime = new Date(expire*1000);
-    return Cookies.set(TOKEN_KEY,token,{expires:expireTime})
-}
-/**
-获取cookies
- */
-export const getToken = () => {
-    return Cookies.get(TOKEN_KEY);
+export const setLanguage = (LANG) => {
+    return  Cookies.set(LANG_KEY,LANG)
 }
 
 /**
- 删除cookies
+ * 获取
+*/
+export const getLanguage = () => {
+    return Cookies.get(LANG_KEY)
+}
+
+/**
+ * 删除
  */
-export const removeToken = () => {
-    Cookies.remove(TOKEN_KEY)
+export const removeLanguage = () => {
+    Cookies.remove(LANG_KEY)
 }

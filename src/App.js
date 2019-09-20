@@ -6,23 +6,13 @@
  */
 import React, {Component} from 'react';
 import Routes from './router';
-import {connect} from 'react-redux'
 import { Layout } from 'antd';
 const { Content, Footer } = Layout;
 
-import{ userInfo,userDev } from './store/user/action'
 import { isMobileDev } from './utils/utl'
 import HeaderCustom from './components/HeaderCustom/HeaderCustom';
 import SiderBarCustom from './components/SiderBarCustom/SiderBarCustom';
 
-const mapStatetoProps = (state) => {
-    return{
-        getUserInfo:state.getUserInfo,
-    }
-}
-const mapDispatchToProps = {userInfo,userDev}
-
-@connect(mapStatetoProps,mapDispatchToProps)
 export default class extends Component{
     state = {
         collapsed: false,
@@ -37,10 +27,29 @@ export default class extends Component{
         window.onresize = () => {
             this._getClientWidth();
         };
+        window.addEventListener("beforeunload",() => {
+            this._setUserInfoToLocalStorage()
+        })
+        window.onload = () => {
+            this._clearLocalStorage()
+        }
     }
     _getClientWidth = () => {
         let clientWidth = window.innerWidth;
         this.props.userDev(isMobileDev(clientWidth))
+    }
+    _setUserInfoToLocalStorage(){
+        Object.keys(this.props.getUserInfo.userInfo).forEach(item => {
+            localStorage.setItem(item,this.props.getUserInfo.userInfo[item])
+        })  
+    }
+    _clearLocalStorage(){
+        this.props.userInfo({
+            userName:localStorage.getItem("userName"),
+            password:localStorage.getItem("password"),
+            auth:localStorage.getItem("auth")
+        })
+        localStorage.clear()
     }
     render(){
         let { isMobileDev } = this.props.getUserInfo

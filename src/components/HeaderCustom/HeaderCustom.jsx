@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import screenfull from 'screenfull';
 import { Layout, Menu, Dropdown, Icon, Modal} from 'antd';
-const { confirm } = Modal;
 const { Header } = Layout;
 
 import './index.scss';

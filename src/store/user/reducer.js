@@ -9,8 +9,8 @@ import * as user from './action-type';
 const defaultState = {
     userInfo:{
         userName:"",
-        role:"",
-        avator:"", 
+        password:"",
+        auth:"",
     },
     isMobileDev:false
 }
