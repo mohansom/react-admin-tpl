@@ -13,9 +13,15 @@ class Login extends React.Component{
                 password:values.password,
                 auth:values.username
             })
-            this.props.history.push("/")
+            this.props.history.replace("/")
           }
         })
+    }
+    componentDidMount(){
+        // 退出登入到login页面 刷新login页面前清理localstorage(不知道从哪里缓存的继续研究一下) 
+        window.onunload = () => {
+            localStorage.clear()
+        }
     }
     render(){
         const { getFieldDecorator } = this.props.form;

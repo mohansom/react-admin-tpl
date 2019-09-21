@@ -24,12 +24,13 @@ export default class extends React.Component{
     }
     render(){
         let isLogin = this.isLogin()
+        console.log(isLogin)
         return(
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" render={ () => isLogin ? <Redirect to="/admin/dashboard" push/> : <Redirect to="/login" replace />}/>
                     <Route path="/admin"  render={ () => isLogin ? <App {...this.props}/> :  <Redirect to="/login" replace /> }/>
-                    <Route path="/login"  render={ () => isLogin ? <Redirect to="/" replace /> : <Login userInfo={this.props.userInfo}/> }/>
+                    <Route path="/login"  render={ () => isLogin ? <Redirect to="/" replace /> : <Login {...this.props}/> }/>
                     <Route render={ () => isLogin ? <NotFound /> : <Redirect to="/login" replace /> }/>
                 </Switch>
             </BrowserRouter>

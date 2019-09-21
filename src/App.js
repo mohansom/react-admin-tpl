@@ -26,10 +26,10 @@ export default class extends Component{
         this._getClientWidth();
         window.onresize = () => {
             this._getClientWidth();
-        };
-        window.addEventListener("beforeunload",() => {
+        }
+        window.onunload = () => {
             this._setUserInfoToLocalStorage()
-        })
+        }
         window.onload = () => {
             this._clearLocalStorage()
         }
@@ -41,7 +41,7 @@ export default class extends Component{
     _setUserInfoToLocalStorage(){
         Object.keys(this.props.getUserInfo.userInfo).forEach(item => {
             localStorage.setItem(item,this.props.getUserInfo.userInfo[item])
-        })  
+        }) 
     }
     _clearLocalStorage(){
         this.props.userInfo({
@@ -61,6 +61,8 @@ export default class extends Component{
                         mobile={isMobileDev} 
                         toggle={this.toggle}
                         collapsed={this.state.collapsed}
+                        userInfo={this.props.userInfo}
+                        getUserInfo={this.props.getUserInfo}
                     />
                     <Content>
                         <Routes/>

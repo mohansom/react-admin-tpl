@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
 import screenfull from 'screenfull';
 import { Layout, Menu, Dropdown, Icon, Modal} from 'antd';
 const { Header } = Layout;
@@ -6,6 +7,7 @@ const { Header } = Layout;
 import './index.scss';
 import SvgIcon from '../SvgIcon/SvgIcon'
 
+@withRouter
 export default class extends Component{
     state = {
         isFullscreen: false
@@ -16,15 +18,20 @@ export default class extends Component{
         })
         screenfull.toggle()
     }
+    logOut = () => {
+        this.props.userInfo({
+            userName:"",
+            password:"",
+            auth:""
+        })
+        this.props.history.replace("/")
+    }
     render(){
         const language = require("../../assets/svg/language.svg")
         const avatar = require("../../assets/images/avatar.jpg")
         const menu = (
             <Menu>
-                <Menu.Item>
-                    <span>修改密码</span>
-                </Menu.Item>
-                <Menu.Item>
+                <Menu.Item onClick={this.logOut}>
                     <span>退出登录</span>
                 </Menu.Item>
             </Menu>
