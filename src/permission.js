@@ -24,7 +24,6 @@ export default class extends React.Component{
     }
     render(){
         let isLogin = this.isLogin()
-        console.log(isLogin)
         return(
             <BrowserRouter>
                 <Switch>
