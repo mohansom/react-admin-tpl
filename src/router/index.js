@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Switch,Route } from 'react-router-dom';
+import { Switch,Route,Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { routes } from './renderRoutes';
 
@@ -30,6 +30,7 @@ export default class extends Component{
                         })
                     ))
                 }
+                <Route render={() => <Redirect to="/404" />} />
             </Switch>
         )  
     }
