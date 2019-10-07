@@ -1,6 +1,6 @@
 const mobileDevWidth = 992
 
-export const isMobileDev = (clientWidth) => {
+export const isMobileDevFun = (clientWidth) => {
     return Number(clientWidth) < mobileDevWidth
 }
 

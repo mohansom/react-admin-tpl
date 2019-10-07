@@ -9,7 +9,7 @@ import Routes from './router';
 import { Layout } from 'antd';
 const { Content, Footer } = Layout;
 
-import { isMobileDev } from './utils/utl'
+import { isMobileDevFun } from './utils/utl'
 import HeaderCustom from './components/HeaderCustom/HeaderCustom';
 import SiderBarCustom from './components/SiderBarCustom/SiderBarCustom';
 
@@ -36,7 +36,7 @@ export default class extends Component{
     }
     _getClientWidth = () => {
         let clientWidth = window.innerWidth;
-        this.props.userDev(isMobileDev(clientWidth))
+        this.props.userDev(isMobileDevFun(clientWidth))
     }
     _setUserInfoToLocalStorage(){
         Object.keys(this.props.getUserInfo.userInfo).forEach(item => {
@@ -65,7 +65,7 @@ export default class extends Component{
                         getUserInfo={this.props.getUserInfo}
                     />
                     <Content>
-                        <Routes/>
+                        <Routes {...this.props}/>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         React-Admin-Tpl ©{new Date().getFullYear()} Created by 610578197@qq.com

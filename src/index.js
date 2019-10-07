@@ -1,14 +1,8 @@
-/*
- * @Author: liujianfeng
- * @Date: 2019-09-16 20:04:10
- * @LastEditors: liujianfeng
- * @LastEditTime: 2019-09-16 20:04:10
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import Permission from './permission';
+import Page from './page';
 import Store from './store/index';
 import 'antd/dist/antd.css';
 import './style/index.scss';
@@ -16,7 +10,7 @@ import './style/index.scss';
 
 ReactDOM.render(
     <Provider store={Store}>
-        <Permission/>
+        <Page/>
     </Provider>,
     document.getElementById('root')
 )
