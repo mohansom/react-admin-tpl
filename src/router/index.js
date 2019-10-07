@@ -5,9 +5,14 @@ import DocumentTitle from 'react-document-title';
 import { routes } from './renderRoutes';
 
 export default class extends Component{
+    // 判断是否登录
     isLogin = () => {
         let userName = this.props.getUserInfo.userInfo.userName || localStorage.getItem("userName")
         return userName === 'guest' || userName === 'admin'
+    }
+    // 判断权限(拓展)
+    isAuth = () => {
+        // do nothing
     }
     render(){
         return(

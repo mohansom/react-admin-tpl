@@ -14,7 +14,6 @@ const mapStatetoProps = (state) => {
         getUserInfo:state.getUserInfo,
     }
 }
-
 const mapDispatchToProps = {userInfo,userDev}
 
 @connect(mapStatetoProps,mapDispatchToProps)
