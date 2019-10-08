@@ -16,11 +16,25 @@ import SiderBarCustom from './components/SiderBarCustom/SiderBarCustom';
 export default class extends Component{
     state = {
         collapsed: false,
+        bgDrawer: false
     };
     toggle = () => {
         this.setState({
             collapsed: !this.state.collapsed,
         });
+    }
+    bgShow = () => {
+        this.setState({
+            bgDrawer: true
+        })
+    }
+    siderbarHidden = () => {
+        let selectDom =  document.querySelector(".siderbar-show")
+        selectDom.style.left = "-200px"
+        selectDom.style.transition = "left 0.5s"
+        this.setState({
+            bgDrawer: false
+        })
     }
     componentDidMount(){
         this._getClientWidth();
@@ -55,14 +69,31 @@ export default class extends Component{
         let { isMobileDev } = this.props.getUserInfo
         return(
             <Layout className="layout-wrap">
-                { !isMobileDev && <SiderBarCustom collapsed={this.state.collapsed} />}
+                { isMobileDev ? 
+                    (   
+                        <div>
+                            {
+                                this.state.bgDrawer ?
+                                (
+                                    <div className="bg-drawer" onClick={this.siderbarHidden}>
+                                    </div>
+                                ) : null
+                            }
+                            <div className="siderbar-show">
+                                <SiderBarCustom  siderbarHidden={this.siderbarHidden}/>
+                            </div>
+                        </div> 
+                    ) 
+                    : (<SiderBarCustom collapsed={this.state.collapsed} />)
+                }
                 <Layout>
                     <HeaderCustom 
                         mobile={isMobileDev} 
                         toggle={this.toggle}
+                        bgShow={this.bgShow}
                         collapsed={this.state.collapsed}
                         userInfo={this.props.userInfo}
-                        getUserInfo={this.props.getUserInfo}
+                        getUserInfo={this.props.getUserInfo}  
                     />
                     <Content>
                         <Routes {...this.props}/>
@@ -74,6 +105,22 @@ export default class extends Component{
                 <style>{`
                     .layout-wrap{
                         height:100%
+                    }
+                    .bg-drawer{
+                        position: absolute;
+                        z-index: 999;
+                        width: 100%;
+                        height: 100%;
+                        background: #000;
+                        opacity: .3;
+                        top: 0;
+                    }
+                    .siderbar-show{
+                        position:absolute;
+                        z-index: 1000;
+                        height:100%;
+                        width:200px;
+                        left:-200px;
                     }
                 `}</style>
             </Layout>

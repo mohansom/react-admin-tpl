@@ -32,7 +32,7 @@ const devWebpackConfig = merge(baseWebpackConfig,{
         },  
         proxy:{
             '/proxy':{
-                target: "http://139.199.3.134:8443" , //接口域名
+                target: "" , //接口域名
                 changeOrigin:true, 
                 pathRewrite:{
                     '^/proxy':'' 
@@ -40,7 +40,7 @@ const devWebpackConfig = merge(baseWebpackConfig,{
             }
         },
         watchOptions:{
-            poll: '1000',
+            // poll: '1000',
             ignored: /node_modules/
         }
     },  

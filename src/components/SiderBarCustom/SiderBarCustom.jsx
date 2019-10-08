@@ -63,7 +63,10 @@ class SiderBarCustom extends Component{
     menuClick(e){
         this.setState({
             selectedKey: e.key
-        });
+        })
+        if(this.props.siderbarHidden){
+            this.props.siderbarHidden()
+        }
     }
     // 点击SubMenu title
     openMenu(v){

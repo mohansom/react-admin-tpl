@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import screenfull from 'screenfull';
-import { Layout, Menu, Dropdown, Icon, Modal} from 'antd';
+import { Layout, Menu, Dropdown, Icon} from 'antd';
 const { Header } = Layout;
 
 import './index.scss';
@@ -17,6 +17,12 @@ export default class extends Component{
             isFullscreen:!this.state.isFullscreen
         })
         screenfull.toggle()
+    }
+    sidebarShow = () => {
+        this.props.bgShow()
+        let selectDom =  document.querySelector(".siderbar-show")
+        selectDom.style.left = 0
+        selectDom.style.transition = "left 0.5s"
     }
     logOut = () => {
         this.props.userInfo({
@@ -49,7 +55,7 @@ export default class extends Component{
         return(
             <Header className="head-wrap">
                 {
-                    this.props.mobile ? <Icon type="menu-unfold" /> : (
+                    this.props.mobile ? <Icon type="menu-unfold" onClick={this.sidebarShow}/> : (
                         <Icon
                             type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={this.props.toggle}
