@@ -71,7 +71,7 @@ export default class extends Component{
             <Layout className="layout-wrap">
                 { isMobileDev ? 
                     (   
-                        <div>
+                        <React.Fragment>
                             {
                                 this.state.bgDrawer ?
                                 (
@@ -82,7 +82,7 @@ export default class extends Component{
                             <div className="siderbar-show">
                                 <SiderBarCustom  siderbarHidden={this.siderbarHidden}/>
                             </div>
-                        </div> 
+                        </React.Fragment> 
                     ) 
                     : (<SiderBarCustom collapsed={this.state.collapsed} />)
                 }

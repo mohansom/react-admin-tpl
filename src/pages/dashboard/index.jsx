@@ -16,7 +16,7 @@ Greeting.propTypes = {
 class Home extends React.Component{
     render(){
         return(
-            <Greeting name={123} />
+            <Greeting name={'Home'} />
         )
     }
 }
