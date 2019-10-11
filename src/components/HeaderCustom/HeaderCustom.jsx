@@ -48,7 +48,7 @@ export default class extends Component{
                     <span>简体中文</span>
                 </Menu.Item>
                 <Menu.Item>
-                    <span>Enhlish</span>
+                    <span>English</span>
                 </Menu.Item>
             </Menu>
         )

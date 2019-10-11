@@ -28,6 +28,12 @@ export const routes = {
             ]
         },
         {
+            path: '/admin/permission',
+            title: '权限',
+            icon: 'lock',
+            component: asyncComponent(() => import("../pages/permission/index"))
+        },
+        {
             path: '/admin/theme',
             title: '换肤',
             icon: 'skin',

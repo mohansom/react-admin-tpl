@@ -80,7 +80,7 @@ export default class extends Component{
                                 ) : null
                             }
                             <div className="siderbar-show">
-                                <SiderBarCustom  siderbarHidden={this.siderbarHidden}/>
+                                <SiderBarCustom siderbarHidden={this.siderbarHidden}/>
                             </div>
                         </React.Fragment> 
                     ) 
@@ -121,6 +121,9 @@ export default class extends Component{
                         height:100%;
                         width:200px;
                         left:-200px;
+                    }
+                    .ant-layout-sider{
+                        height:100%;
                     }
                 `}</style>
             </Layout>
