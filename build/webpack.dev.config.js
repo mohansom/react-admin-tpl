@@ -1,20 +1,14 @@
-/*
- * @Autor: 刘建峰
- * @Date: 2019-07-22 14:16:26
- * @LastEditors: 刘建峰
- * @LastEditTime: 2019-07-22 14:18:27
- */
-
 const path = require('path')
 const webpack = require('webpack');
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const devWebpackConfig = merge(baseWebpackConfig,{
+module.exports = merge(baseWebpackConfig,{
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     output:{
+        publicPath: '/',
         filename: 'js/[name].js',
         chunkFilename: 'js/[id].js',
     },
@@ -29,7 +23,7 @@ const devWebpackConfig = merge(baseWebpackConfig,{
         overlay:{
             warnings: false,
             errors: true
-        },  
+        },
         proxy:{
             '/proxy':{
                 target: "" , //接口域名
@@ -62,5 +56,3 @@ const devWebpackConfig = merge(baseWebpackConfig,{
         })
     ]
 })
-
-module.exports = devWebpackConfig

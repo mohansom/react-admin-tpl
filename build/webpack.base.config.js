@@ -1,13 +1,5 @@
-/*
- * @Autor: 刘建峰
- * @Date: 2019-07-22 14:16:26
- * @LastEditors: 刘建峰
- * @LastEditTime: 2019-07-22 14:16:26
- */
-
 const loader = require('./loader');
 const path = require('path');
-// const webpack = require('webpack');
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -19,8 +11,7 @@ module.exports = {
         main:'./src/index.js'
     },
     output:{
-        path: path.resolve(__dirname,'../build'),
-        publicPath: '/'
+        path: path.resolve(__dirname,'../dist'),
     },
     resolve:{
         extensions: ['.js', '.jsx', 'json','.ts'],

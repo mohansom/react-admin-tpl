@@ -1,10 +1,3 @@
-/*
- * @Autor: 刘建峰
- * @Date: 2019-07-22 14:16:26
- * @LastEditors: 刘建峰
- * @LastEditTime: 2019-07-22 14:18:30
- */
-
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -16,10 +9,11 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const prodWebpackConfig = merge(baseWebpackConfig,{
+module.exports = merge(baseWebpackConfig,{
     mode: 'production',
     devtool: 'nosources-source-map',
     output:{
+        publicPath: 'http://cdn.com.cn',
         filename: 'js/[name].[chunkhash:8].js',
         chunkFilename: 'js/[id].[chunkhash:8].js',
     },
@@ -55,7 +49,7 @@ const prodWebpackConfig = merge(baseWebpackConfig,{
             chunkFilename: 'css/[id].[contenthash:8].css'
         }),
         new BundleAnalyzerPlugin({
-            openAnalyzer: true,
+            openAnalyzer: false,
             analyzerMode: 'static',
             reportFilename: 'analyzer.html'
         })
@@ -125,5 +119,3 @@ const prodWebpackConfig = merge(baseWebpackConfig,{
         }
     }
 })
-
-module.exports = prodWebpackConfig

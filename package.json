@@ -2,10 +2,9 @@
   "name": "react-admin-tpl",
   "version": "1.0.0",
   "description": "react后台管理界面模版",
-  "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.config.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js"
   },
   "author": "liujianfeng",
   "license": "ISC",

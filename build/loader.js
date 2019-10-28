@@ -1,10 +1,3 @@
-/*
- * @Autor: 刘建峰
- * @Date: 2019-07-22 14:16:26
- * @LastEditors: liujianfeng
- * @LastEditTime: 2019-09-17 20:17:22
- */
-
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  
@@ -56,7 +49,7 @@ exports.css = () => {
 exports.scss = () => {
     return{
         test: /\.scss$/,
-        exclude:/node_modeles/,
+        exclude:/node_modules/,
         use:[dev?styleLoader:MiniCssExtractPlugin.loader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
     }
 }
@@ -65,47 +58,50 @@ exports.scss = () => {
 exports.babel = () => {
     return{
         test: /\.(jsx|js)$/,
-        include: path.resolve(__dirname,'../src'),
+        exclude:/node_modules/,
         loader: 'babel-loader',
     }
 }
 
 // images
-
-exports.images = (opt = {}) => {
+exports.images = () => {
     return {
       test: /\.(png|jpe?g|gif|webp|ico)(\?.*)?$/,
       use: [
         {
             loader: 'url-loader',
             options: {
-                limit: 3000,
-                name: opt.filename || 'images/[name].[hash:8].[ext]'
+                limit: 10240,
+                outputPath: 'images',
+                name: '[name]_[hash:8].[ext]'
             }
         },
       ]
     }
 }
+
 // fonts
-exports.fonts = (opt = {}) => {
+exports.fonts = () => {
     return {
         test: /\.(woff(2)?|eot|ttf|otf|svg)(\?v=\d+\.\d+\.\d+)??$/,
         loader: 'url-loader',
         options: {
-            limit: 10000,
-            name: opt.filename || 'fonts/[name].[hash:8].[ext]'
+            limit: 10240,
+            outputPath: 'fonts',
+            name: '[name]_[hash:8].[ext]'
         }
     }
 };
 
 // media
-exports.medias = (opt = {}) => {
+exports.medias = () => {
     return {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-            limit: 3000,
-            name: opt.filename || 'medias/[name].[hash:8].[ext]'
+            limit: 51200,
+            outputPath: 'medias',
+            name: '[name]_[hash:8].[ext]'
         }
     }
 };
