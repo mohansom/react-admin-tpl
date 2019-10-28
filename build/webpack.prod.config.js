@@ -90,30 +90,25 @@ module.exports = merge(baseWebpackConfig,{
             name: 'runtime'
         },
         splitChunks:{
-            chunks: 'async',
-            minSize: 30000,
-            maxSize: 0,
-            minChunks: 1,
+            chunks: 'all',  // 同步代码走cacheGroups配置代码分割 异步代码直接代码分割
+            minSize: 30000, // 模块大于30kb才做代码分割
+            minChunks: 1, // 模块至少被一次引入才做代码分割
             maxAsyncRequests: 5,
             maxInitialRequests: 3,
             automaticNameDelimiter: '~',
-            automaticNameMaxLength: 30,
-            name: false,
+            name: true,
             cacheGroups:{
-                vendor: {
-                    name: 'vendor',
+                vendors: {
                     chunks: 'initial',
+                    test: /[\\/]node_modules[\\/]/,
                     priority: -10,
-                    reuseExistingChunk: false,
-                    test: /[\\/]node_modules[\\/](.*).js/
+                    filename:'vendors.js'
                 },
-                commons: {
-                    name: 'styles',
-                    chunks: 'all',
-                    minChunks: 1,
-                    reuseExistingChunk: true,
-                    enforce: true,
-                    test: /\.(scss|css)$/
+                default: {
+                    chunks: 'initial',
+                    priority: -20,
+                    reuseExistingChunk: true, //如果一个模块已经被打包,再次打包忽略
+                    filename: 'commons.js'
                 }
             }
         }
