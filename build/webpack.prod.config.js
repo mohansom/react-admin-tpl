@@ -15,7 +15,7 @@ module.exports = merge(baseWebpackConfig,{
     output:{
         publicPath: 'http://cdn.com.cn',
         filename: 'js/[name].[chunkhash:8].js',
-        chunkFilename: 'js/[id].[chunkhash:8].js',
+        chunkFilename: 'js/chunk_[name].[chunkhash:8].js'
     },
     plugins:[
         new webpack.DefinePlugin({
@@ -46,7 +46,7 @@ module.exports = merge(baseWebpackConfig,{
         }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[id].[contenthash:8].css'
+            chunkFilename: 'css/chunk_[name].[contenthash:8].css'
         }),
         new BundleAnalyzerPlugin({
             openAnalyzer: false,
@@ -86,31 +86,5 @@ module.exports = merge(baseWebpackConfig,{
                 canPrint: true
             })
         ],
-        runtimeChunk: {
-            name: 'runtime'
-        },
-        splitChunks:{
-            chunks: 'all',  // 同步代码走cacheGroups配置代码分割 异步代码直接代码分割
-            minSize: 30000, // 模块大于30kb才做代码分割
-            minChunks: 1, // 模块至少被一次引入才做代码分割
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
-            cacheGroups:{
-                vendors: {
-                    chunks: 'initial',
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10,
-                    filename:'vendors.js'
-                },
-                default: {
-                    chunks: 'initial',
-                    priority: -20,
-                    reuseExistingChunk: true, //如果一个模块已经被打包,再次打包忽略
-                    filename: 'commons.js'
-                }
-            }
-        }
     }
 })
