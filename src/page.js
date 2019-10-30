@@ -7,7 +7,7 @@ import asyncComponent from './utils/asyncComponent';
 import{ userInfo,userDev } from './store/user/action';
 
 const Login = asyncComponent(() => import('./pages/Login'));
-const NotFound = asyncComponent(() => import('./pages/NotFound'));
+const NotFound = asyncComponent(() => import( /* webpackChunkName:"NotFound",webpackPrefetch: true */ './pages/NotFound'));
 
 const mapStatetoProps = (state) => {
     return{
