@@ -49,7 +49,7 @@ module.exports = merge(baseWebpackConfig,{
             chunkFilename: 'css/chunk_[name].[contenthash:8].css'
         }),
         new BundleAnalyzerPlugin({
-            openAnalyzer: false,
+            openAnalyzer: true,
             analyzerMode: 'static',
             reportFilename: 'analyzer.html'
         })
