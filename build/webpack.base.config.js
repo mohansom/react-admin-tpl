@@ -1,17 +1,49 @@
-const loader = require('./loader');
-const path = require('path');
+const loader = require('./loader')
+const path = require('path')
+const fs = require('fs')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const addAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
+const plugins = [
+    new HtmlWebpackPlugin({
+        template:path.resolve(__dirname,'../public/index.html'),
+        favicon: path.resolve(__dirname,'../public/favicon.ico'),
+    }),
+    new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/chunk_[name].[contenthash:8].css'
+    }),
+]
+const jsFiles = fs.readdirSync(resolve('dll/js'))
+jsFiles.forEach(file => {
+    plugins.push(
+        new addAssetHtmlWebpackPlugin({
+            filepath:path.resolve(__dirname,'../dll/js',file)
+        })
+    )
+})
+const jsonFiles = fs.readdirSync(resolve('dll/json'))
+jsonFiles.forEach(file => {
+    plugins.push(
+        new webpack.DllReferencePlugin({
+            manifest:path.resolve(__dirname,'../dll/json',file)
+        })
+    )
+})
+
 module.exports = {
-    context: path.resolve(__dirname, '../'),
+    context: resolve('/'),
     entry: {
         main:'./src/index.js'
     },
     output:{
-        path: path.resolve(__dirname,'../dist'),
+        path: resolve('dist'),
     },
     resolve:{
         extensions: ['.js', '.jsx', 'json','.ts'],
@@ -32,6 +64,7 @@ module.exports = {
             loader.medias(),
         ]
     },
+    plugins,
     optimization:{
         runtimeChunk: {
             name: 'runtime'
@@ -57,7 +90,7 @@ module.exports = {
                     priority: -20,
                     reuseExistingChunk: true, //如果一个模块已经被打包,再次打包忽略
                     name: 'default'
-                }
+                },
             }
         }
     },

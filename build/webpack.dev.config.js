@@ -1,8 +1,6 @@
-const path = require('path')
-const webpack = require('webpack');
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config.js')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(baseWebpackConfig,{
     mode: 'development',
@@ -47,12 +45,5 @@ module.exports = merge(baseWebpackConfig,{
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        new HtmlWebpackPlugin({
-            template:path.resolve(__dirname,'../public/index.html'),
-            favicon: path.resolve(__dirname,'../public/favicon.ico'),
-            inject: true,
-            hash: true,
-            cache: true,
-        })
     ]
 })

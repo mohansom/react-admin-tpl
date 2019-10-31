@@ -42,7 +42,7 @@ exports.css = () => {
     return{
         test: /\.css$/,
         exclude: /\.m\.css$/,
-        use:[dev?styleLoader:MiniCssExtractPlugin.loader,cssLoader,postcssLoader]
+        use:[MiniCssExtractPlugin.loader,cssLoader,postcssLoader]
     }
 }
 // scss 
@@ -50,14 +50,14 @@ exports.scss = () => {
     return{
         test: /\.scss$/,
         exclude:/node_modules/,
-        use:[dev?styleLoader:MiniCssExtractPlugin.loader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
+        use:[MiniCssExtractPlugin.loader,cssLoader,postcssLoader,scssLoader,scssResourcesLoader]
     }
 }
 
 // babel
 exports.babel = () => {
     return{
-        test: /\.(jsx|js)$/,
+        test: /\.jsx?$/,
         exclude:/node_modules/,
         loader: 'babel-loader',
     }
